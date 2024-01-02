@@ -1,23 +1,12 @@
 {
   "name": "trotuarcreator",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve ./example/main.js --open",
-    "build": "vue-cli-service build --name trotuarcreator --entry ./src/index.js --target lib",
-    "lint": "vue-cli-service lint",
-    "prepublishOnly": "npm run lint && npm run build && npm run styleguide:build",
-    "styleguide": "vue-styleguidist server",
-    "styleguide:build": "vue-styleguidist build"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "main": "dist/trotuarcreator.umd.js",
-  "module": "dist/trotuarcreator.common.min.js",
-  "files": [
-    "dist/*.css",
-    "dist/*.map",
-    "dist/*.js",
-    "src/*"
-  ],
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
@@ -28,11 +17,8 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "component-fixture": "^1.12.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "vue-cli-plugin-component": "~1.12.2",
-    "vue-styleguidist": "^1.7.13"
+    "eslint-plugin-vue": "^8.0.3"
   },
   "eslintConfig": {
     "root": true,
@@ -53,9 +39,5 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ],
-  "keywords": [
-    "vue",
-    "component"
   ]
 }
