@@ -1,15 +1,23 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <sandbox>
+
+      <TimeData />
+
+    </sandbox>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Sandbox } from 'component-fixture'
+import "font-awesome/css/font-awesome.css";
+import "component-fixture/dist/ComponentFixture.css";
+import TimeData from '@/components/TimeData.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Sandbox,
+    TimeData
   }
 }
 </script>
