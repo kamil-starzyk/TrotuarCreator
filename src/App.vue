@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <TimeEditor :time="timeData.time" />
+    <div v-if="time">
+      <TimeEditor :time="time" @change="(time) => Object.assign(this.time, time)"/>
+    </div>
+    <div v-else>
+      <p>Loading...</p>
+    </div>
     <!-- Other components using specific data -->
   </div>
 </template>
@@ -14,7 +19,8 @@ export default {
   },
   data() {
     return {
-      timeData: null // Initialize data object to store time data
+      gameData: {}, // Initialize data object to store time data
+      time: {}
     };
   },
   created() {
@@ -22,7 +28,10 @@ export default {
     fetch('data/demo.json') // Adjust the path as needed
       .then(response => response.json())
       .then(data => {
-        this.timeData = data; // Store the entire data object from demo.json
+        this.gameData = data; // Store the entire data object from demo.json
+        // this.time = data.time;
+        Object.assign(this.time, data.time)
+        
       })
       .catch(error => {
         console.error('Error fetching data:', error);
