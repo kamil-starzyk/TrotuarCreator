@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <div v-if="time">
-      <TimeEditor :time="time" @change="(time) => Object.assign(this.time, time)"/>
-      {{ JSON.stringify(time) }}
+    <div v-if="gameData.time">
+      <TimeEditor :time="gameData.time" @change="(time) => Object.assign(this.gameData.time, time)"/>
+      <PlayerEditor :player="gameData.player" @change="(player) => Object.assign(this.gameData.player, player)"/>
+
       </div>
     <div v-else>
       <p>Loading...</p>
@@ -16,15 +17,16 @@
 
 <script>
 import TimeEditor from './components/TimeEditor.vue'; // Import the TimeDisplay component
+import PlayerEditor from './components/PlayerEditor.vue'; // Import the TimeDisplay component
 
 export default {
   components: {
-    TimeEditor // Register the TimeDisplay component
+    TimeEditor, // Register the TimeDisplay component
+    PlayerEditor // Register the TimeDisplay component
   },
   data() {
     return {
-      gameData: {}, // Initialize data object to store time data
-      time: {}
+      gameData: {}
     };
   },
   created() {
@@ -32,10 +34,11 @@ export default {
     fetch('data/demo.json') // Adjust the path as needed
       .then(response => response.json())
       .then(data => {
+
         this.gameData = data; // Store the entire data object from demo.json
-        // this.time = data.time;
-        Object.assign(this.time, data.time)
-        
+
+        Object.assign(this.gameData, data)
+        console.log(this.gameData)
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -44,8 +47,8 @@ export default {
   methods: {
     downloadJSON() {
       // eslint-disable-next-line no-unused-vars
-      const {isTrusted, _vts, ...rest} = this.time
-      const jsonData = JSON.stringify({...this.gameData, time:rest});
+      const {isTrusted, _vts, ...rest} = this.gameData
+      const jsonData = JSON.stringify(rest, null, 2);
 
       // Create a Blob object to store the JSON data
       const blob = new Blob([jsonData], { type: "application/json" });

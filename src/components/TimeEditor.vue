@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>Time Details</h1>
-    <div>
+  <div class="editorPanel">
+    <h1 @click="togglePanel">Time Details</h1>
+    <div v-show="panelVisible">
       <p>Seconds: <input
         :value="time.s" 
         @input=" ( event ) => handleUpdate(event, 's')"
@@ -41,15 +41,23 @@
 
 <script>
 export default {
+  data() {
+    return {
+      panelVisible: false
+    };
+  },
   props: {
     time: Object // Define time as a prop
   },
   methods: {
     handleUpdate(event, key){
-      const objekt = { ...this.time, [key]:event.target.value }
-      this.$emit('change', objekt)
+      const record = { ...this.time, [key]:event.target.value }
+      this.$emit('change', record)
       //console.log(objekt)
       console.log(this.time)
+    },
+    togglePanel() {
+      this.panelVisible = !this.panelVisible;
     }
   },
   mounted(){
