@@ -1,5 +1,5 @@
 <template>
-  <div class="editorPanel">
+  <div class="editor_panel">
     <h1 @click="togglePanel">Time Details</h1>
     <div v-show="panelVisible">
       <p>Seconds: <input

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div v-if="gameData.time">
-      <TimeEditor :time="gameData.time" @change="(time) => Object.assign(this.gameData.time, time)"/>
       <PlayerEditor :player="gameData.player" @change="(player) => Object.assign(this.gameData.player, player)"/>
+      <TimeEditor :time="gameData.time" @change="(time) => Object.assign(this.gameData.time, time)"/>
 
+      
+      {{ JSON.stringify(gameData.player.alias) }}
       </div>
     <div v-else>
       <p>Loading...</p>
