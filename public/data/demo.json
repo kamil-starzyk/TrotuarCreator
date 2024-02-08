@@ -103,7 +103,7 @@
 			"Pierwsze zadanie od kapitana": "Nie byłem jeszcze u kapitana, może ma dla mnie jakieś ciekawe zadanie."
 		},
     "affiliation": [
-      "Torenerg"
+      "Torenberg"
     ]
   },
   "world": {
@@ -1335,7 +1335,7 @@
             "is_aggressive": false,
             "can_ally": true,
             "affiliation": [
-              "Torenerg"
+              "Torenberg"
             ]
           },
           {
@@ -1528,7 +1528,7 @@
             "is_aggressive": false,
             "can_ally": true,
             "affiliation": [
-              "Torenerg"
+              "Torenberg"
             ]
           },
           {
@@ -1722,7 +1722,7 @@
             "is_aggressive": false,
             "can_ally": true,
             "affiliation": [
-              "Torenerg"
+              "Torenberg"
             ]
           },
           {
@@ -1943,7 +1943,7 @@
             "is_aggressive": false,
             "can_ally": true,
             "affiliation": [
-              "Torenerg"
+              "Torenberg"
             ]
           },
           {

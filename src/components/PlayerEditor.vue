@@ -32,9 +32,16 @@
         :value="player.name" 
         @input=" ( event ) => handleUpdate(event, 'name')"
       ></p>
+      <p>Alias: 
+        <GenericArray 
+          :items="player.alias" 
+          :new-item="''" 
+          :renderComponent="renderComponentAlias"
+          @change="(value) => handleUpdate({target: {value}}, 'alias')"
+        >
+        </GenericArray>
+      </p>
       
-      
-
       <h3>Stats</h3>
       <p>strength: <input
         :value="player.stats.strength" 
@@ -47,25 +54,46 @@
         type="number"
       ></p>
 
+      <h3>Equipment</h3>
+      <p>
+        <GenericArray 
+          :items="player.equipment" 
+          :new-item="{'name':'nazwa', 'description':'desc', 'weight':1}" 
+          :renderComponent="renderComponentEquipment"
+          @change="(value) => handleUpdate({target: {value}}, 'equipment')"
+        >
+        </GenericArray>
+      </p>
       <br>
+
     </div>
   </div>
 </template>
 
 <script>
+import GenericArray from "./GenericArray.vue";
+import AliasEntry from "./AliasEntry.vue";
+import EquipmentEntry from "./EquipmentEntry.vue";
+import { toRaw } from 'vue'
 import _ from "lodash"
+
 export default {
+  components: {
+    GenericArray
+  },
   data() {
     return {
-      panelVisible: false
+      panelVisible: true
     };
   },
   props: {
-    player: Object // Define time as a prop
+    player: Object, // Define time as a prop
+    renderComponentAlias: {type:Object, default:AliasEntry},
+    renderComponentEquipment: {type:Object, default:EquipmentEntry}
   },
   methods: {
     handleUpdate(event, key, isNumber=false){
-      const record = structuredClone(this.player)
+      const record = structuredClone(toRaw(this.player))
       const value = isNumber ? +event.target.value : event.target.value
       _.set(record, key, value)
     

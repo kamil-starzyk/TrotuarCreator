@@ -5,7 +5,7 @@
       <TimeEditor :time="gameData.time" @change="(time) => Object.assign(this.gameData.time, time)"/>
 
       
-      {{ JSON.stringify(gameData.player.alias) }}
+      <pre>{{ JSON.stringify(gameData.player.equipment, null, 2) }}</pre>
       </div>
     <div v-else>
       <p>Loading...</p>
