@@ -74,7 +74,7 @@
 import GenericArray from "./GenericArray.vue";
 import AliasEntry from "./AliasEntry.vue";
 import EquipmentEntry from "./EquipmentEntry.vue";
-import { toRaw } from 'vue'
+//import { toRaw } from 'vue'
 import _ from "lodash"
 
 export default {
@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     handleUpdate(event, key, isNumber=false){
-      const record = structuredClone(toRaw(this.player))
+      const record = this.player
       const value = isNumber ? +event.target.value : event.target.value
       _.set(record, key, value)
     

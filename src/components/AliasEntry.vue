@@ -8,17 +8,14 @@
 </template>
 
 <script>
-import { toRaw } from 'vue'
 export default {
   props: {
     item: String
   },
   methods: {
     handleAliasUpdate(event){
-      const record = structuredClone(toRaw(event.target.value))
-      console.log("benc " + record)
-      this.$emit('change', record)
-      console.log(event.target.value)
+      
+      this.$emit('change', event.target.value)
     }
   },
   mounted(){

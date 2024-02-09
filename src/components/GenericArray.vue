@@ -8,8 +8,8 @@
           @change="(value) => handleUpdate({ target:{value} }, index)"
         />
       </template>
-  </div>
-    <button @click="removeItem(index)">-</button>
+    </div>
+    <button @click="() => removeItem(index)">-</button>
   </span>
   <button @click="addItem">+</button>
 </template>
@@ -25,13 +25,16 @@ export default {
   },
   methods: {
     handleUpdate(event, key, isNumber=false){
+      if (event.target.value instanceof Event ) return //dis fix dirty as hell but what i gonna do
+
       const record = structuredClone(toRaw(this.items))
       const value = isNumber ? +event.target.value : event.target.value
       _.set(record, key, value)
-    
+      
+      console.log("event: ", event)
       this.$emit('change', record)
-      //console.log(objekt)
-      console.log(this.items)
+      
+      
     },
     addItem() {
       const nextItems = structuredClone(toRaw(this.items));
