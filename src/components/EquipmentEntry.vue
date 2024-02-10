@@ -10,6 +10,7 @@
   <input 
     :value="item.weight" 
     @input="(event) => handleItemUpdate(event, 'weight', true)"
+    class="numeric_input"
   >
 </template>
 

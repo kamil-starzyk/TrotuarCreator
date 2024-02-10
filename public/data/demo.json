@@ -19,7 +19,7 @@
     "race": "Człowiek",
     "proficiency": "wojownik",
     "params": {
-      "hp": 100,
+      "hp": 69,
       "hp_max": 100,
       "stamina": 100,
       "stamina_max":100,

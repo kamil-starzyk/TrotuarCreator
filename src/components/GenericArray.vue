@@ -1,19 +1,35 @@
 <template>
-  <span v-for="(item, index) in items" :key="index">
-    <div>
+
+  <div class="root_div">
+    <span v-for="(item, index) in items" :key="index" class="array_item">
       <template v-if="renderComponent">
         <component 
-          :is="renderComponent" 
-          :item="item" 
-          @change="(value) => handleUpdate({ target:{value} }, index)"
+        :is="renderComponent" 
+        :item="item" 
+        @change="(value) => handleUpdate({ target:{value} }, index)"
         />
       </template>
+      <button @click="() => removeItem(index)">-</button>
+    </span>
+    <div>
+      <button @click="addItem">add item +</button>
     </div>
-    <button @click="() => removeItem(index)">-</button>
-  </span>
-  <button @click="addItem">+</button>
+  </div>
+  <div style="display: none" class="div_to_save_app_from_unexpected_crash"></div>
 </template>
 
+<style>
+  .root_div{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .array_item{
+    display:flex;
+    align-items: center;
+    gap: 8px;
+  }
+</style>
 <script>
 import _ from "lodash"
 import { toRaw } from 'vue'
