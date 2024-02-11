@@ -41,7 +41,7 @@
       <h3>Parametry</h3>
       <p>HP max <input :value="player.params.hp_max" @input=" ( event ) => handleUpdate(event, 'params.hp_max', true)" type="number" class="numeric_input">
       HP <input type="range" min="0" :max="player.params.hp_max" :value="player.params.hp" @input=" ( event ) => handleUpdate(event, 'params.hp', true)">{{ player.params.hp }}</p>
-      
+       
       <p>Stamina total <input :value="player.params.stamina_total" @input=" ( event ) => handleUpdate(event, 'params.stamina_total', true)" type="number" class="numeric_input">
       TODO Stamina max <input :value="player.params.stamina_max" @input=" ( event ) => handleUpdate(event, 'params.stamina_max', true)" type="number" class="numeric_input">
       Stamina <input type="range" min="0" :max="player.params.stamina_max" :value="player.params.stamina" @input=" ( event ) => handleUpdate(event, 'params.stamina', true)">{{ player.params.stamina }}</p>
