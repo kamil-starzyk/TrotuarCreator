@@ -70,6 +70,23 @@
           "hydration": 45,
           "hp": 1
         }
+      },
+      {
+        "type": "Weapon",
+        "alias": [
+          "miecz strudzonych",
+          "miecz"
+        ],
+        "name": "Miecz strudzonych",
+        "description": "Prosty, lekki miecz. Idealny na początek",
+        "weight": 4,
+        "price": 60,
+        "attr": {
+          "body_part": "first_hand",
+          "damage": 12,
+          "strength": -5,
+          "dexterity": -5
+        }
       }
     ],
     "slots": {

@@ -158,7 +158,7 @@
         TODO Stamina max
         <input
           :value="player.params.stamina_max"
-          @input="(event) => handleUpdate(event, 'params.stamina_max', true)"
+          @input="handleStaminaMax"
           type="number"
           class="numeric_input"
         />
@@ -296,11 +296,25 @@
       <h3>Slots TODO</h3>
       <p>
         first hand
-        <EquipmentEntry :item="player.slots.first_hand"></EquipmentEntry>
+        <SlotEntry
+          :currentItem="player.slots.first_hand"
+          :aviableItems="
+            player.equipment.filter(
+              (item) => item.attr.body_part === 'first_hand'
+            )
+          "
+        />
       </p>
       <p>
         body
-        <EquipmentEntry :item="player.slots.body"></EquipmentEntry>
+        <SlotEntry
+          :currentItem="player.slots.body"
+          :aviableItems="
+            player.equipment.filter(
+              (item) => item.attr.body_part === 'body'
+            )
+          "
+        />
       </p>
       <br />
     </div>
@@ -314,16 +328,19 @@
 </style>
 
 <script>
+// TODO: change body_part "body" to "torso"
 import GenericArray from "./GenericArray.vue";
 import AliasEntry from "./AliasEntry.vue";
 import EquipmentEntry from "./EquipmentEntry.vue";
+import SlotEntry from "./SlotEntry.vue";
+
 //import { toRaw } from 'vue'
 import _ from "lodash";
 
 export default {
   components: {
     GenericArray,
-    EquipmentEntry,
+    SlotEntry,
   },
   data() {
     return {
@@ -350,6 +367,23 @@ export default {
       this.$emit("change", record);
       //console.log(objekt)
       console.log(this.player);
+    },
+    handleStaminaMax(event) {
+      const stamina_max = +event.target.value;
+      const stamina_total = +this.player.params.stamina_total;
+      if (stamina_max > stamina_total) {
+        this.handleUpdate(
+          { target: { value: stamina_total } },
+          "params.stamina_max",
+          true
+        );
+      } else {
+        this.handleUpdate(
+          { target: { value: stamina_max } },
+          "params.stamina_max",
+          true
+        );
+      }
     },
     togglePanel() {
       this.panelVisible = !this.panelVisible;
