@@ -38,7 +38,7 @@
 
             <div class="mb-3">
               <GenericArray
-                :items="Object.entries(item.attr).map( ([key, value]) => ({key, value}))"
+                :items="Object.entries(item.attr || {}).map( ([key, value]) => ({key, value}))"
                 :new-item="{ name: 'nazwa', description: 'desc', weight: 1 }"
                 :renderComponent="renderComponentEquipment"
                 @change="editItemAttr"
@@ -62,7 +62,6 @@
 </style>
 
 <script>
-import GenericArray from "./GenericArray.vue";
 //TODO generic dictionary
 import { toRaw } from "vue";
 import _ from "lodash";
@@ -93,6 +92,9 @@ export default {
     }
   },
   mounted() {
+    console.log("Benc: ")
+    console.log(this.item.name)
+    console.log(this.item.attr)
     this.modal = new window.bootstrap.Modal(this.$refs.itemModal)
   },
   unmounted() {
